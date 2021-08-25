@@ -1,0 +1,18 @@
+{% extends '../index.html' %}
+{% block title %} Books - Rejestracja {% endblock %}
+{% block content %}
+{% load static %}
+	<main>
+		<div class="login-form" style="width: 300px;">
+			<h3 class="text-center">Zarejestruj się</h3>
+			<form class="site-form" action="/register/" method="post">
+				{% csrf_token %}
+				{{ form }}
+				<div class="form-group">
+					<button type="submit" value="Signup" class="btn btn-primary btn-block" style="background-color:#FF6633; border-color:#FF6633;">Zarejestruj się</button>
+				</div>
+			</form>
+			<p class="text-center"><a href="{% url 'login' %}">Mam konto chce się zalogować</a></p>
+		</div>
+	</main>
+{% endblock %}

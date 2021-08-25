@@ -1,0 +1,190 @@
+{% extends '../index.html' %}
+{% block title %} {{ book.title }} {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<article>
+		<br><br>
+		<div class="container">
+			<div class="row">
+				<aside class="col-lg-4">
+					<img class="img-thumbnail" src="{{ book.cover.url }}" alt="{{ book.title }}">
+					<br><br>
+					<table class="table table-striped">
+					  <tbody>
+						<tr>
+						  <th scope="col">Tytuł:</th>
+						  <td colspan="2">{{ book.title }}</td>
+						</tr>
+						<tr>
+						  <th scope="row">Autorzy:</th>
+						  <td colspan="2">
+							  {% for author in book.authors.all %}
+							  	{{author}}
+							  {% endfor %}
+						  </td>
+						</tr>
+						<tr>
+						  <th scope="row">Wydawnictwo:</th>
+						  <td colspan="2">{{ book.publishing }}</td>
+						</tr>
+						<tr>
+						  <th scope="row">Liczba stron:</th>
+						  <td colspan="2">{{ book.numberOfPages }}</td>
+						</tr>
+						<tr>
+						  <th scope="row">Data premiery:</th>
+						  <td colspan="2">{{ book.releaseDate }}</td>
+						</tr>
+						<tr>
+						  <th scope="row">ISBN</th>
+						  <td colspan="2">{{ book.isbn }}</td>
+						</tr>
+					  </tbody>
+					</table>
+				</aside>
+				<div class="col-lg-8 bg-white text-body wpis">
+					<div class="container-fluid">
+					<header>
+						<h1 class="h1 font-weight-bold text-uppercase ml-0 mb-4 text-center text-md-left">{{ book.title }}
+							{% if user.is_authenticated %}
+							<a href="/dodaj_opinie/{{ book.slug }}"/><button type="button" class="btn btn-warning ml-5 mb-0">Przeczytane <i class="fas fas fa-book-reader pl-1"></i></button></a>
+							<a href="/add_to_read/{{ book.slug }}"/><button type="button" class="btn btn-secondary ">Chcę przeczytać <i class="fas fas fa-book-reader pl-1"></i></button></a>
+							{% endif %}
+							{% if not user.is_authenticated %}
+								<a href="{% url 'login' %}"/><button type="button" class="btn btn-warning ml-5 mb-0">Przeczytane <i class="fas fas fa-book-reader pl-1"></i></button></a>
+								<a href="{% url 'login' %}"/><button href="{% url 'login' %}" type="button" class="btn btn-secondary ">Chcę przeczytać <i class="fas fas fa-book-reader pl-1"></i></button></h1></a>
+							{% endif %}
+						</h1>
+						<b>gatunek:</b>
+						{% for type in book.types.all %}
+							{{type}},
+						{% endfor %}
+						<br><br>
+					</header>
+					</div>
+					<p>{{book.desc}}</p>
+				<div class="container">
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="rating-block">
+									<h4>Średnia ocena użytkowników</h4>
+									<h2 class="bold padding-bottom-7">
+										{{ bookRatings|floatformat:2 }}
+										<small>/ 5.0</small>
+									</h2>
+								</div>
+							</div>
+							<div class="col-sm-5">
+								<h4>Oceny</h4>
+								<div class="pull-left">
+									<div class="pull-left" style="width:35px; line-height:1;">
+										<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+									</div>
+									<div class="pull-left" style="width:180px;">
+										<div class="progress" style="height:9px; margin:8px 0;">
+										  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{ rating5nr }}%"><!-- width - % of data to vote-->
+											<span class="sr-only">80% Complete (danger)</span>
+										  </div>
+										</div>
+									</div>
+									<div class="pull-right" style="margin-left:10px;">{{ rating5 }}</div><!-- number of data to vote-->
+								</div>
+								<div class="pull-left">
+									<div class="pull-left" style="width:35px; line-height:1;">
+										<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+									</div>
+									<div class="pull-left" style="width:180px;">
+										<div class="progress" style="height:9px; margin:8px 0;">
+										  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: {{ rating4nr }}%"><!-- width - % of data to vote-->
+											<span class="sr-only">80% Complete (danger)</span>
+										  </div>
+										</div>
+									</div>
+									<div class="pull-right" style="margin-left:10px;">{{ rating4 }}</div><!-- number of data to vote-->
+								</div>
+								<div class="pull-left">
+									<div class="pull-left" style="width:35px; line-height:1;">
+										<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+									</div>
+									<div class="pull-left" style="width:180px;">
+										<div class="progress" style="height:9px; margin:8px 0;">
+										  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: {{ rating3nr }}%"><!-- width - % of data to vote-->
+											<span class="sr-only">80% Complete (danger)</span>
+										  </div>
+										</div>
+									</div>
+									<div class="pull-right" style="margin-left:10px;">{{ rating3 }}</div><!-- number of data to vote-->
+								</div>
+								<div class="pull-left">
+									<div class="pull-left" style="width:35px; line-height:1;">
+										<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+									</div>
+									<div class="pull-left" style="width:180px;">
+										<div class="progress" style="height:9px; margin:8px 0;">
+										  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: {{ rating2nr }}%"><!-- width - % of data to vote-->
+											<span class="sr-only">80% Complete (danger)</span>
+										  </div>
+										</div>
+									</div>
+									<div class="pull-right" style="margin-left:10px;">{{ rating2 }}</div><!-- number of data to vote-->
+								</div>
+								<div class="pull-left">
+									<div class="pull-left" style="width:35px; line-height:1;">
+										<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+									</div>
+									<div class="pull-left" style="width:180px;">
+										<div class="progress" style="height:9px; margin:8px 0;">
+										  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: {{ rating1nr }}%"><!-- width - % of data to vote-->
+											<span class="sr-only">60% Complete (danger)</span>
+										  </div>
+										</div>
+									</div>
+									<div class="pull-right" style="margin-left:10px;">{{ rating1 }}</div><!-- number of data to vote-->
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-9">
+								<hr/>
+								<div class="review-block">
+									{% for rating in ratingOfBooks.all %}
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="review-block-name" style="color: royalBlue">
+												{% if rating.user.first_name %}
+													{{ rating.user.first_name}}
+												{% else %}
+													Anonim
+												{% endif %}
+											</div>
+											<div class="review-block-date">{{ rating.date }}</div>
+										</div>
+										<div class="col-sm-9">
+											<div class="review-block-rate">
+												{% for i in "x"|ljust:rating.rate %}
+													<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+														<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+													</button>
+												{% endfor %}
+<!--												<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">-->
+<!--													 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+<!--												</button>-->
+											</div>
+											<div class="review-block-title">Komentarz</div>
+											<div class="review-block-description">{{ rating.review }}</div>
+										</div>
+									</div>
+									<hr/>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</main>
+{% endblock %}

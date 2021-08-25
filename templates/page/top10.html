@@ -1,0 +1,54 @@
+{% extends '../index.html' %}
+{% block title %} Books - TOP 10 {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+			<h5><b>TOP 10</b></h5>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+	  <div class="row">
+		<div class="col-12">
+			<table class="table text-center table-image">
+			  <thead>
+				<tr>
+				  <th scope="col">Top</th>
+				  <th scope="col">Okładka</th>
+				  <th scope="col">Tytuł i Opis</th>
+				  <th scope="col" style="width:16%">Autor</th>
+				  <th scope="col">Przeczytane</th>
+				  <th scope="col">Ocena</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				  {% for book in books %}
+						<tr>
+							<th scope="row">{{ forloop.counter }}</th>
+						  <td class="w-25">
+							  <a href="/books/{{ book.slug }}"><img  src="{{ book.cover.url }}" class="img-fluid img-thumbnail" alt="{{ book.title }}"></a>
+						  </td>
+						  <td>
+							  <h3><b>{{book.title}}</b></h3><br>
+							{{ book.desc }}
+						  </td>
+						  <td>
+							  {% for author in book.authors.all %}
+								<h7>{{author}}</h7>
+							  {% endfor %}
+						  </td>
+						  <td><h7>{{ book.read }}</h7></td>
+						  <td><h7-gold><b>{{ book.averageRate }}</b></h7-gold></td>
+						</tr>
+					{% endfor %}
+			  </tbody>
+			</table>   
+		</div>
+	  </div>
+</div>
+</main>
+{% endblock %}

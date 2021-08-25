@@ -1,0 +1,27 @@
+{% extends '../index.html' %}
+{% block title %} Books - Kontakt {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<div class="login-form form">
+		<form action="/contact/" method="POST">
+			<h2 class="text-center">Formularz kontaktowy</h2>
+			{% csrf_token %}
+			{{ form.as_p }}
+<!--			<div class="form-group">-->
+<!--				<input type="text" class="form-control" placeholder="Pseudonim" required="required">-->
+<!--			</div>-->
+<!--			<div class="form-group">-->
+<!--				<input type="email" class="form-control" placeholder="Email" required="required">-->
+<!--			</div>-->
+<!--			 <div class="form-group">-->
+<!--				<label for="contentsContact" style="color:black;">Treść</label>-->
+<!--				<textarea class="form-control" id="contentsContact" rows="3"></textarea>-->
+<!--			 </div>-->
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block"style="background-color:#FF6633; border-color:#FF6633;">Wyślij</button>
+			</div>
+		</form>
+	</div>
+</main>
+{% endblock %}

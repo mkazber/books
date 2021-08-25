@@ -1,0 +1,22 @@
+{% extends '../index.html' %}
+{% block title %} Books - Logowanie {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+<br>
+	<div class="login-form" style="width: 300px;">
+		<form action="#" method="post">
+			{% csrf_token %}
+			{{ form }}
+			<br><br><br>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block"style="background-color:#FF6633; border-color:#FF6633;">Zaloguj</button>
+			</div>
+			<div class="clearfix">
+				<a href="{% url 'forgotpass' %}" class="pull-right">Zapomniałeś hasła?</a>
+			</div>
+		</form>
+		<p class="text-center"><a href="{% url 'register' %}">Stwórz nowe konto</a></p>
+	</div>
+</main>
+{% endblock %}

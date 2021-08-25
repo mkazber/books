@@ -1,0 +1,20 @@
+{% extends '../index.html' %}
+{% block title %} Zapomniałem hasła {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<div class="login-form">
+		<form action="/forgotpass/" method="POST">
+			<h2 class="text-center" >Nie pamiętasz hasła?</h2>
+				<br>
+			<a class="text-center" style="color:black;">W poniższe pole wpisz adres e-mail podany podczas rejestracji konta</a>
+			{% csrf_token %}
+			{{ form.as_p }}
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block"style="background-color:#FF6633; border-color:#FF6633;">Wyślij</button>
+			</div>
+		</form>
+		<p class="text-center"><a href="{% url 'login' %}">Anuluj</a></p>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends '../index.html' %}
+{% block title %} Dodaj opinie {{book.title}} {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<div class="login-form form">
+		<form class="site-form" action="/dodaj_opinie/{{ book.slug }}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block" style="background-color:#FF6633; border-color:#FF6633;">Dodaj opinię</button>
+			</div>
+		</form>
+	</div>
+</main>
+{% endblock %}

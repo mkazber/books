@@ -1,0 +1,24 @@
+{% extends '../index.html' %}
+{% block title %} Lista gatunków {% endblock %}
+{% block content %}
+{% load static %}
+	<main>
+	<br><br>
+		<div class="container">
+			<div class="row">
+					<div class="col-12">
+					<h5><b>Gatunki</b></h5>
+					</div>
+			</div>
+			<hr>
+			<div class="container">
+				<div class="col-lg-12  ml-5 text-center text-body">
+					<div class="row">
+					{% for bookType in bookTypes.all %}
+						<div class="col-4" style="margin-bottom: 15px;"><a href="/booktypes/{{ bookType.slug }}"><button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#FF6633; border-color:#FF6633;">{{ bookType }}</button> </a></div>
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+</main>
+{% endblock %}

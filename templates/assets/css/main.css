@@ -1,0 +1,362 @@
+body
+{
+	background-color: #F5F5F5;
+	color: #CC3300;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+	padding-top: 3rem;
+}
+
+h1
+{
+	font-size: 60px;
+	font-weight: 400;
+	color: #CC3300;
+	margin: 20px;
+}
+
+h2
+{
+	font-size: 40px;
+	font-weight: 400;
+	color: #2C3E50;
+	margin: 20px;
+}
+
+h3
+{
+	font-size : 30px;
+	color: #CC3300;
+	margin: 10px;
+}
+
+h4
+{
+	font-size : 12px;
+	font-weight: 400;
+	color: #2C3E50;
+	margin: 10px;
+}
+
+h5
+{
+	font-size : 50px;
+	color: #ffbf00;
+	margin: 10px;
+	text-align: center;
+	
+}
+
+h6
+{
+	font-size : 16px;
+	color: #CC3300;
+	
+}
+h6-gold
+{
+	font-size : 16px;
+	color: #ffbf00;
+	
+}
+
+h7
+{
+	font-size : 25px;
+	color: #CC3300;
+	margin: 10px;
+}
+h7-gold
+{
+	font-size : 25px;
+	color: #ffbf00;
+	margin: 10px;
+}
+
+
+
+
+blockquote 
+{
+	font-family: Georgia, "Times new roman", Times;
+	font-style: italic;
+	color: #333;
+	width: auto;
+	position: relative;
+}
+	
+
+	
+blockquote p:last-child 
+{
+	font-size: 0.75em;
+	color: #777;
+}
+blockquote p:last-child:before 
+{
+	content: '—';
+	margin-right: 5px;
+		
+}
+
+footer
+{
+	background:#2C3E50;
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+	bottom:0;
+	
+}
+
+
+
+.books
+{
+	text-align: center;
+}
+
+.books img
+{
+
+	height: 350px;
+}
+
+.books p
+{
+	margin-bottom: 30px;
+}
+
+.books figcaption
+{
+	margin-top: 8px;
+}
+
+.navbar
+{
+	min-height: 57px;
+}
+
+.bg-books
+{
+	background-color: #FF6633; !important;
+}
+
+.wpis
+{
+	text-align: justify;
+	font-size: 16px;
+	padding: 30px;
+	margin-bottom: 40px;
+}
+
+.list-group-item-dark
+{
+	background-color: #CC3300;
+	color: white;
+}
+
+.list-group-item-dark:hover
+{
+	background-color: #91a33b !important;
+}
+
+.list-group .active
+{
+	background-color: #91a33b !important;
+	cursor: default;
+}
+
+.blockquote
+{
+	line-height: 120%;
+}
+
+@media (max-width: 575px)
+{
+	.wpis
+	{
+		margin: 40px 20px;
+		text-align: left;
+		font-size: 15px;
+	}
+	
+	.float-left, .float-right
+	{
+		max-width: 50%;
+	}
+	
+	.blockquote
+	{
+		font-size: 17px;
+	}
+	
+	.list-group
+	{
+		text-align: center;
+	}
+}
+.btn-grey
+{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.rating-block
+{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold
+{
+	font-weight:700;
+}
+.padding-bottom-7
+{
+	padding-bottom:7px;
+}
+
+.review-block
+{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name
+{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date
+{
+	font-size:12px;
+}
+.review-block-rate
+{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title
+{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description
+{
+	font-size:13px;
+}
+
+.login-form 
+{
+	width: 340px;
+    margin: 50px auto;
+}
+.login-form form 
+{
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 
+{
+    margin: 0 0 15px;
+}
+.form-control, .btn 
+{
+    min-height: 38px;
+    border-radius: 2px;
+}
+.btn 
+{	
+    font-size: 15px;
+    font-weight: bold;
+	border-radius: 12px;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  color:white;
+}
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+  background-color: #777;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+  
+  .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+div.container4 {
+    height: 10em;
+    position: relative }
+div.container4 p {
+    margin: 0;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+
+.books-wrapper {
+    height: 100px;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+.filter-wrapper {
+    height: 100px !important;
+    max-height: 100px !important;
+    overflow-y: scroll !important;
+}

@@ -1,0 +1,61 @@
+{% extends '../index.html' %}
+{% block title %} {{ book.title }} {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<br><br>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+				<h5><b>{{ author }}</b></h5>
+				</div>
+			</div>
+			<hr>
+			<div class="col-lg-12  ml-5 text-center text-body">
+				<div class="rating-block">
+					<h3>Średnia ocena książek tego autora</h3>
+					<h2 class="bold padding-bottom-7">{{ averageRate|floatformat:2 }} <small>/ 5</small></h2>
+					<h4> <b>{{profilesRead}}</b> osób przeczytało książki autora {{author}}.</h4>
+					<h4> <b>{{profilesWantRead}}</b> osób chce przeczytać książki autora {{author}}.</h4>
+				</div>
+			</div>
+			<table class="table text-center table-image wpis">
+				  <thead>
+					<tr>
+					  <th scope="col">Okładka</th>
+					  <th scope="col">Tytuł
+							<a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="/authors/{{ author.slug }}/title_asc/"></a>
+							<a style="display:block;" class="fas fa-sort-down sort-icon" href="/authors/{{ author.slug }}/title_desc/"></a>
+					  </th>
+					  <th scope="col">Wydawnictwo
+						  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="/authors/{{ author.slug }}/publishing_asc/"></a>
+						  <a style="display:block;" class="fas fa-sort-down sort-icon" href="/authors/{{ author.slug }}/publishing_desc/"></a>
+					  </th>
+					  <th scope="col">Przeczytane
+						  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="/authors/{{ author.slug }}/read_asc/"></a>
+						  <a style="display:block;" class="fas fa-sort-down sort-icon" href="/authors/{{ author.slug }}/read_desc/"></a>
+					  </th>
+					  <th style="display:inline-block;" scope="col"> Ocena
+						  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="/authors/{{ author.slug }}/rate_asc/"></a>
+						  <a style="display:block;" class="fas fa-sort-down sort-icon" href="/authors/{{ author.slug }}/rate_desc/"></a>
+					  </th>
+					</tr>
+				  </thead>
+				  <tbody>
+			  	{% for book in books %}
+					<tr>
+					  <td class="w-25">
+						  <a href="/books/{{ book.slug }}"><img src="{{ book.cover.url }}" class="img-fluid img-thumbnail" alt="{{ book.title }}"></a>
+					  </td>
+					  <td><h6><b>{{ book.title }}</h6></td>
+					  <td>
+						  <h6>{{ book.publishing }}</h6>
+					  </td>
+					  <td><h6>{{book.read}}</h6></td>
+					  <td><h6-gold><b>{{book.averageRate}}</b></h6-gold></td>
+					</tr>
+				{% endfor %}
+			  </tbody>
+			</table>
+	</main>
+{% endblock %}

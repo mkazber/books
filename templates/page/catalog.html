@@ -1,0 +1,99 @@
+{% extends '../index.html' %}
+{% block title %} Books - Katalog {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+	<article>
+		<br><br>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-3 bg-white text-body wpis">
+					<div class="container-fluid" >
+						<h3><b>Katalog</b></h3>
+						<hr>
+						<form class="site-form" action="/catalog/" method="GET">
+							<div class="filter-wrapper">
+								<b>Gatunki:</b>
+								{% for bookType in bookTypes %}
+									<div class="custom-control custom-checkbox">
+									  <input type="checkbox" class="custom-control-input" id="bookType{{bookType.id}}"  name="bookType{{bookType.id}}" />
+									  <label class="custom-control-label" for="bookType{{bookType.id}}">{{ bookType.name }}</label>
+									</div>
+								{% endfor %}
+							</div>
+							<div>
+								<hr>
+								<b>Wydawnictwa:</b>
+								{% for publishing in publishings %}
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="publishing{{publishing.id}}" name="publishing{{publishing.id}}" />
+										<label class="custom-control-label" for="publishing{{publishing.id}}">{{ publishing.name }}</label>
+									</div>
+								{% endfor %}
+							</div>
+							<div>
+								<hr>
+								<b>Autorzy:</b>
+								{% for author in authors %}
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="author{{author.id}}" name="author{{author.id}}" />
+										<label class="custom-control-label" for="author{{author.id}}">{{ author }}</label>
+									</div>
+								{% endfor %}
+							</div>
+							<div style="margin-top: 20px;">
+								<input type="submit" class="btn btn-primary" value="Filtruj">
+								<input type="reset" class="btn btn-secondary" value="Resetuj">
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-12 col-lg-8 bg-white ml-3 text-body wpis">
+					<div class="container-fluid books-wrapper">
+						<table class="table text-center table-image">
+						  <thead>
+							<tr>
+							  <th scope="col">Okładka</th>
+							  <th scope="col">Tytuł
+									<a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="{% url 'catalogTitleAsc' %}"></a>
+								  	<a style="display:block;" class="fas fa-sort-down sort-icon" href="{% url 'catalogTitleDesc' %}"></a>
+							  </th>
+							  <th scope="col">Autor
+								  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="{% url 'catalogAuthorAsc' %}"></a>
+								  <a style="display:block;" class="fas fa-sort-down sort-icon" href="{% url 'catalogAuthorDesc' %}"></a>
+							  </th>
+							  <th scope="col">Przeczytane
+								  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="{% url 'catalogReadAsc' %}"></a>
+								  <a style="display:block;" class="fas fa-sort-down sort-icon" href="{% url 'catalogReadDesc' %}"></a>
+							  </th>
+							  <th style="display:inline-block;" scope="col"> Ocena
+								  <a style="display:block; margin-bottom: -10px" class="fas fa-sort-up sort-icon" href="{% url 'catalogRateAsc' %}"></a>
+								  <a style="display:block;" class="fas fa-sort-down sort-icon" href="{% url 'catalogRateDesc' %}"></a>
+							  </th>
+							</tr>
+						  </thead>
+						  <tbody>
+								{% for book in books %}
+									<tr>
+									  <td class="w-25">
+										  <a href="/books/{{ book.slug }}"><img src="{{ book.cover.url }}" class="img-fluid img-thumbnail" alt="{{ book.title }}"></a>
+									  </td>
+									  <td><h6><b>{{book.title}}</h6></td>
+									  <td>
+										  {% for author in book.authors.all %}
+										  	<h6>{{author}}</h6>
+										  {% endfor %}
+									  </td>
+									  <td><h6>{{ book.read }}</h6></td>
+										<td><h6-gold><b>{{ book.averageRate }}</b></h6-gold></td>
+									</tr>
+								{% endfor %}
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</main>
+{% endblock %}

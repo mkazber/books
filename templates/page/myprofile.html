@@ -1,0 +1,85 @@
+{% extends '../index.html' %}
+{% block title %} Profil użytkownika {{ user.username }} {% endblock %}
+{% block content %}
+{% load static %}
+<main>
+    <br><br>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-lg-8 order-lg-2">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edytuj profil</a>
+                    </li>
+                </ul>
+                <div class="tab-content py-4">
+                    <div class="tab-pane active" id="profile">
+                        <h5 class="mb-3">Twój profil</h5>
+                        <br><br>
+                        <div class="row">
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr>
+                                  <th scope="row">Nazwa użytkownika</th>
+                                  <td>{{ user.username }}</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Imię</th>
+                                  <td>{{user.first_name}}</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Nazwisko</th>
+                                  <td>{{user.last_name}}</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Email</th>
+                                  <td>{{user.email}}</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Data urodzin</th>
+                                    <td>
+                                        {{user.profile.birth_date}}
+                                    </td>
+                                  <td></td>
+                                </tr>
+                              <tr>
+                                  <th scope="row">Opis</th>
+                                  <td>{{ user.profile.bio}}</td>
+                                  <td></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <form class="site-form" action="/user_profile/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ user_form.as_p }}
+                              <hr>
+                            {% csrf_token %}
+                            {{ profile_form.as_p }}
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Anuluj">
+                                    <input type="submit" class="btn btn-primary" value="Zapisz zmiany">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-lg-1 text-center">
+                <img src="/media/{{user.profile.avatar}}" class="mx-auto img-fluid img-circle d-block" alt="Zdjęcie profilowe" style="max-width: 300px">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
